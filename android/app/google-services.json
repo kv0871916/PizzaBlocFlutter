@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "456449790411",
+    "project_id": "vg-everythingstack",
+    "storage_bucket": "vg-everythingstack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456449790411:android:35d4735d94f52b6ff1a64e",
+        "android_client_info": {
+          "package_name": "com.everythingstack.xyz.my_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456449790411-rg7j8ul4r7k6a4tetb5kvckgl29rkdlp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlJohHtFmQTOexRRU2rT5ogqlhgNiBy1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456449790411-rg7j8ul4r7k6a4tetb5kvckgl29rkdlp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "456449790411-9ius15ednupb5tpf1nffbfntkh4cgvae.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.everythingstack.xyz"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
