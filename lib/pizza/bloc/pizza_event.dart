@@ -24,3 +24,10 @@ class RemovePizza extends PizzaEvent {
   @override
   List<Object> get props => [pizza];
 }
+
+class ClearPizza extends PizzaEvent {
+  const ClearPizza();
+
+  @override
+  List<Object> get props => [];
+}
