@@ -31,3 +31,9 @@ Some Null Safety Fix
 
 AppLocalizations
 // flutter gen-l10n
+
+
+Build Web 
+//flutter build web -t lib/main_production.dart   
+//flutter build web -t lib/main_development.dart
+//flutter build web -t lib/main_staging.dart
