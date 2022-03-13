@@ -37,5 +37,15 @@ class PizzaBloc extends Bloc<PizzaEvent, PizzaState> {
         );
       }
     });
+    on<ClearPizza>((event, emit) {
+      if (state is PizzaLoaded) {
+        final state = this.state as PizzaLoaded;
+        emit(
+          PizzaLoaded(
+            pizza: List.from(state.pizza)..clear(),
+          ),
+        );
+      }
+    });
   }
 }

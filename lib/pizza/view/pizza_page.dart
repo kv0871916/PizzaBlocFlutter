@@ -61,7 +61,11 @@ class PizzaView extends StatelessWidget {
                   onPressed: () {
                     context.read<PizzaBloc>().add(
                           AddPizza(
-                            pizza: Pizza.pizza[0],
+                            pizza: state.pizza.length.isEven
+                                ? Pizza.pizza[0]
+                                : state.pizza.length.isOdd
+                                    ? Pizza.pizza[0]
+                                    : Pizza.pizza[1],
                           ),
                         );
                   },
@@ -73,7 +77,11 @@ class PizzaView extends StatelessWidget {
                   onPressed: () {
                     context.read<PizzaBloc>().add(
                           RemovePizza(
-                            pizza: Pizza.pizza[0],
+                            pizza: state.pizza.length.isEven
+                                ? Pizza.pizza[0]
+                                : state.pizza.length.isOdd
+                                    ? Pizza.pizza[0]
+                                    : Pizza.pizza[1],
                           ),
                         );
                   },
@@ -84,24 +92,10 @@ class PizzaView extends StatelessWidget {
                   backgroundColor: Colors.amber,
                   onPressed: () {
                     context.read<PizzaBloc>().add(
-                          AddPizza(
-                            pizza: Pizza.pizza[1],
-                          ),
+                          const ClearPizza(),
                         );
                   },
-                  child: const Icon(Icons.local_pizza),
-                ),
-                const SizedBox(height: 8),
-                FloatingActionButton(
-                  backgroundColor: Colors.amber,
-                  onPressed: () {
-                    context.read<PizzaBloc>().add(
-                          RemovePizza(
-                            pizza: Pizza.pizza[1],
-                          ),
-                        );
-                  },
-                  child: const Icon(Icons.remove),
+                  child: const Icon(Icons.refresh),
                 ),
               ],
             ),
@@ -150,8 +144,40 @@ class PizzaImageBody extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.5,
                     child: state.pizza[i].imageUrl.isNotEmpty
                         ? Image.network(
-                            state.pizza[i].imageUrl,
+                            i.isEven
+                                ? 'https://raw.githubusercontent.com/kv0871916/PizzaBlocFlutter/a1c1ec3d055ae843f41d6476fb9b2e56f922ccb8/assets/pizza.png'
+                                : 'https://raw.githubusercontent.com/kv0871916/PizzaBlocFlutter/a1c1ec3d055ae843f41d6476fb9b2e56f922ccb8/assets/pizza2.png',
                             fit: BoxFit.contain,
+                            loadingBuilder: (
+                              BuildContext context,
+                              Widget? child,
+                              ImageChunkEvent? loadingProgress,
+                            ) {
+                              if (loadingProgress == null) {
+                                return Container(child: child);
+                              }
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
+                            errorBuilder: (_, __, ___) => Image.asset(
+                              state.pizza[i].imageUrl,
+                              fit: BoxFit.contain,
+                              errorBuilder: (_, __, ___) => Container(
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.amber,
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(state.pizza[i].name),
+                              ),
+                            ),
                           )
                         : Container(),
                   ),
